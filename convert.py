@@ -13,9 +13,30 @@ def convert_temp(unit_in, unit_out, temp):
 
       convert_temp("c", "f", 0)  =>  32.0
       convert_temp("f", "c", 212) => 100.0
-    """
 
-    # YOUR CODE HERE
+      (0°C × 9/5) + 32 = 32°F
+      (32°F − 32) × 5/9 = 0°C
+    """
+    valid_units = ["c", "f"]
+    if not (unit_out in valid_units):
+        return f"Invalid unit {unit_out}"
+    if not (unit_in in valid_units):
+        return f"Invalid unit {unit_in}"
+
+    if unit_in == unit_out:
+        return temp
+
+    if unit_in == "c":
+        converted_temp = (temp * 9/5) + 32
+    if unit_in == "f":
+        converted_temp = (temp - 32) * 5/9
+    return converted_temp
+
+
+def is_valid(unit):
+    if unit != "c" or unit != "f":
+      return False
+    return True
 
 
 print("c", "f", 0, convert_temp("c", "f", 0), "should be 32.0")
